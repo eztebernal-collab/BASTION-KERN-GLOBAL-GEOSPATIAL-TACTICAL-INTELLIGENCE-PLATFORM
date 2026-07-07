@@ -18,6 +18,14 @@ interface GlobalState {
   theme: 'dark' | 'light';
   setTheme: (theme: 'dark' | 'light') => void;
   
+  globalError: string | null;
+  setGlobalError: (error: string | null) => void;
+  
+  githubToken: string | null;
+  setGithubToken: (token: string | null) => void;
+  githubUser: any | null;
+  setGithubUser: (user: any | null) => void;
+  
   bottomSheetState: 0 | 1 | 2;
   setBottomSheetState: (state: 0 | 1 | 2) => void;
   
@@ -62,6 +70,14 @@ export const useGlobalStore = create<GlobalState>()(
       theme: 'dark',
       setTheme: (theme) => set({ theme }),
       
+      globalError: null,
+      setGlobalError: (error) => set({ globalError: error }),
+      
+      githubToken: null,
+      setGithubToken: (token) => set({ githubToken: token }),
+      githubUser: null,
+      setGithubUser: (user) => set({ githubUser: user }),
+      
       bottomSheetState: 1, // Start partial
       setBottomSheetState: (state) => set({ bottomSheetState: state }),
       
@@ -77,7 +93,8 @@ export const useGlobalStore = create<GlobalState>()(
       name: 'bastion-kern-storage', // name of the item in the storage (must be unique)
       partialize: (state) => ({ 
         activeLayers: state.activeLayers,
-        theme: state.theme
+        theme: state.theme,
+        githubToken: state.githubToken
       }),
     }
   )

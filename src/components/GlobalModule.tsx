@@ -8,12 +8,15 @@ import NavigationHub from './ui/NavigationHub';
 import BottomTelemetrySheet from './ui/BottomTelemetrySheet';
 import SOSHud from './ui/SOSHud';
 import Memberships from './ui/Memberships';
+import Profile from './ui/Profile';
+import GlobalErrorNotification from './ui/GlobalErrorNotification';
 
 export default function GlobalModule() {
   const currentModule = useGlobalStore(state => state.currentModule);
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#0B0D12] text-white touch-none">
+      <GlobalErrorNotification />
       {/* Base Canvas */}
       <div className="absolute inset-0 z-0">
         <EarthCanvas />
@@ -37,6 +40,7 @@ export default function GlobalModule() {
         <div className="pointer-events-auto">
           {currentModule === 'sos' && <SOSHud />}
           {currentModule === 'memberships' && <Memberships />}
+          {currentModule === 'profile' && <Profile />}
           {(currentModule === 'global' || currentModule === 'map') && <BottomTelemetrySheet />}
         </div>
       </div>
